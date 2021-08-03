@@ -1,37 +1,38 @@
 <p class="h1">Ajout d'utilisateurs</p>
-<form class="needs-validation" novalidate>
+<form [formGroup]="userForm" class="needs-validation" novalidate>
     <div class="form-row">
-        <input type="hedden" class="form-control" name="id">
       <div class="col-md-4 mx-auto">
         <label for="nom">Nom</label>
-        <input type="text" class="form-control" id="nom" placeholder="Entrer Votre Nom" name="nom" required>
+        <input type="text" class="form-control" id="nom" placeholder="Entrer Votre Nom" formControlName="firstName" required>
       </div>
       <div class="col-md-4 mx-auto">
         <label for="prenom">Prénom</label>
-        <input type="text" class="form-control" id="prenom" placeholder="Entrer Votre Prénom" name="prenom" required>
+        <input type="text" class="form-control" id="prenom" placeholder="Entrer Votre Prénom" formControlName="lastName" required>
       </div>
       <div class="col-md-4 mx-auto">
         <label for="etat">Etat</label>
-        <input type="text" class="form-control" id="etat" placeholder="Entrer Votre Etat" name="etat" required>
+        <input type="text" class="form-control" id="etat" placeholder="Entrer Votre Etat" formControlName="status" required>
       </div>
     </div>
     <div class="form-row">
       <div class="col-md-4 mx-auto">
         <label for="utilisateur">Nom d'utilisateur</label>
-        <input type="text" class="form-control" id="utilisateur" placeholder="Entrer Votre Nom d'utilisateur" name="user"  required>
+        <input type="text" class="form-control" id="utilisateur" placeholder="Entrer Votre Nom d'utilisateur" formControlName="userName"  required>
       </div>
       <div class="col-md-4 mx-auto">
         <label for="date">Date de création</label>
-        <input type="text" class="form-control" id="date" name="date" required>
+        <input type="date" class="form-control" id="date" formControlName="createdDate" required>
       </div>
       <div class="col-md-4 mx-auto">
         <label for="matricule">Matricule</label>
-        <input type="number" class="form-control" id="matricule" placeholder="Entrer Votre Matricule" name="matricule" required>
+        <input type="number" class="form-control" id="matricule" placeholder="Entrer Votre Matricule" formControlName="registrationNumber" required>
       </div>
     </div>
     <div class="m-5">
-    <a routerLink="/" type="submit" (click) = "enregistrerUser($event)" class="btn btn-warning float-right" role="button" aria-disabled="true">Enregistrer</a>
+    <a routerLink="/" type="submit" (click) = "enregistrerUser()"  class="btn btn-warning float-right" role="button" aria-disabled="true">Enregistrer</a>
    </div>
   </form>
+
+  
   
   

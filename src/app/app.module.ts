@@ -6,6 +6,7 @@ import { TableUtilisateurComponent } from './table-utilisateur/table-utilisateur
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { RouterModule,Routes } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
        { path: "" ,
@@ -29,7 +30,9 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

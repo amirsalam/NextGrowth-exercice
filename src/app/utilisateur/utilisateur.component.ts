@@ -1,5 +1,5 @@
-import { NUMBER_TYPE } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl,FormBuilder,Validators } from '@angular/forms';
 
 
 @Component({
@@ -8,6 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./utilisateur.component.css']
 })
 export class UtilisateurComponent implements OnInit {
+  userForm = new FormGroup({
+    reference: new FormControl(),
+    quantity: new FormControl('11')
+});
+
+form=new FormGroup({})
   
   stringType = ''
 
@@ -42,49 +48,57 @@ export class UtilisateurComponent implements OnInit {
   ]
 
 
-  constructor(stringType : string) { 
+  constructor(private formBuilder: FormBuilder) { 
     
   }
 
+
+
   ngOnInit(): void {
+    // this.createForm()
+
+    this.userForm = this.formBuilder.group({
+      createdDate: new FormControl('', Validators.required),
+      status: new FormControl('', Validators.required),
+      firstName:new FormControl('', Validators.required),
+      lastName:new FormControl('', Validators.required),
+      userName:new FormControl('', Validators.required),
+      registrationNumber:new FormControl('', Validators.required),
+  });
+
   }
 
-  enregistrerUser(event :any){
+  
+
+  createForm() {
+      
+    console.log("console :",this.userForm.value)
+}
+
+get f() { return this.userForm.controls; }
+
+  enregistrerUser(){
     this.users.forEach( (index) => {
-      this.stringType   = Math.floor(Math.random() * 10000000001) 
+      this.stringType   = Math.floor(Math.random() * 1000000001).toString()
         index.id   = this.stringType 
-        index.createdDate = event.target.date.value
-        index.status = event.target.etat.value
-        index.firstName = event.target.nom.value
-        index.lastName = event.target.prenom.value
-        index.userName = event.target.user.value
-        index.registrationNumber = event.target.matricule.value
-         this.users.push(index.id,
-                                index.createdDate,
-                                index.status,
-                                index.firstName,
-                                index.lastName,
-                                index.userName,
-                                index.registrationNumber)
-    });
+        index.createdDate = this.userForm.value.createdDate
+        index.status = this.userForm.value.status
+        index.firstName = this.userForm.value.firstName
+        index.lastName = this.userForm.value.lastName
+        index.userName = this.userForm.value.userName
+        index.registrationNumber = this.userForm.value.registrationNumber
+         this.users.push({id:index.id,
+          createdDate:index.createdDate,
+          status:index.status,
+          firstName:index.firstName,
+          lastName:index.lastName,
+          userName:index.userName,
+          registrationNumber:index.registrationNumber})
+          
+    })
+    console.log(this.users)
 
-    // this.users.id = Math.floor(Math.random() * 10000000001)
-    // this.users.createdDate = event.target.date.value
-    // this.users.status = event.target.etat.value
-    // this.users.firstName = event.target.nom.value
-    // this.users.lastName = event.target.prenom.value
-    // this.users.userName = event.target.user.value
-    // this.users.registrationNumber = event.target.matricule.value
+  
 
-    // return this.users.push(this.users.id,
-    //   this.users.createdDate,
-    //   this.users.status,
-    //   this.users.firstName,
-    //   this.users.lastName,
-    //   this.users.userName,
-    //   this.users.registrationNumber)
-
-
-  }
-
+}
 }
